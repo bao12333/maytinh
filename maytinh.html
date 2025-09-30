@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Tính toán hai số</title>
+  <style>
+    body {font-family: sans-serif; background: #eef; padding: 20px;}
+    label, select, input {margin: 6px;}
+  </style>
+</head>
+<body>
+  <h2>Tính phép toán</h2>
+
+  <label>Số thứ nhất: <input id="numA" type="number"></label><br>
+  <label>Số thứ hai: <input id="numB" type="number"></label><br>
+  <label>Chọn phép tính:
+    <select id="operator">
+      <option value="+">Cộng</option>
+      <option value="-">Trừ</option>
+      <option value="*">Nhân</option>
+      <option value="/">Chia</option>
+    </select>
+  </label><br>
+
+  <button id="run">Thực hiện</button>
+  <p>Kết quả là: <strong id="output">_</strong></p>
+
+  <script>
+    // Sử dụng object map thay vì if-else
+    const actions = {
+      '+': (x, y) => x + y,
+      '-': (x, y) => x - y,
+      '*': (x, y) => x * y,
+      '/': (x, y) => y !== 0 ? x / y : 'Không chia cho 0'
+    };
+
+    document.getElementById('run').addEventListener('click', () => {
+      const a = Number(numA.value);
+      const b = Number(numB.value);
+      const op = operator.value;
+      const result = actions[op](a, b);
+      output.textContent = result;
+    });
+  </script>
+</body>
+</html>
